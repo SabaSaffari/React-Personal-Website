@@ -3,14 +3,14 @@ const navLinks = [
     {
         id: 2,
         text: 'Courses',
-        link: '#',
+        link: '/courses',
         count: 5,
         icon: 'fa fa-graduation-cap feather'
     },
-    { id: 3, text: 'Education', link: '#',  icon: 'fa fa-university feather' },
-    { id: 4, text: 'Skill', link: '#', icon: 'fa fa-briefcase feather' },
-    { id: 5, text: 'About', link: '#', icon: 'fa fa-user feather' },
-    { id: 6, text: 'Contact', link: '#', icon: 'fa fa-envelope feather' }
+    { id: 3, text: 'Education', link: '/education',  icon: 'fa fa-university feather' },
+    { id: 4, text: 'Skill', link: '/skill', icon: 'fa fa-briefcase feather' },
+    { id: 5, text: 'About', link: '/about', icon: 'fa fa-user feather' },
+    { id: 6, text: 'Contact', link: '/contact', icon: 'fa fa-envelope feather' }
 ];
 
 const getNavLinks = () => {
