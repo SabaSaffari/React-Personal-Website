@@ -4,12 +4,23 @@ const Contact = () => {
         <div className="container-fluid">
             <div className="row bg-light border rounded m-2">
                 <div className="col">
-                    <p className="lead m-2">
+                    <p className="lead mt-5">
                         <span className="fa fa-envelope m-1" />
-                         Contact us
+                         Contact me
+                    </p>
+                    <p className="m-2">
+                        <span className="fa fa-envelope-open" /> Email address:
+                        <span 
+                           className="m-2 font-weight-bold">
+                                saba.sfrm@gmail.com
+                        </span>
+                    </p>
+                    <p className="m-2">
+                        <span className="fa fa-address-card" /> Address:
+                        <span className="m-2">Australia, Melbourne VIC</span>
                     </p>
                 </div>
-                <div className="col-6">
+                <div className="col-7 mt-3">
                     <form>
                         <div className="card border-primary rounded m-2">
                             <div className="card-header p-0">
