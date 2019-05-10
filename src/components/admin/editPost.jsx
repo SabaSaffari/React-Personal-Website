@@ -1,22 +1,44 @@
 import React, { Component } from 'react';
-import {createPost} from '../../services/postService';
+import {updatePost} from '../../services/postService';
 import {toast} from 'react-toastify';
 import _ from 'lodash';
 
-class CreatePost extends Component {
+class EditPost extends Component {
     state = { 
+        _id: '',
         postTitle: '',
+        postDate: '',
         postImageUrl: '',
         postContent: '', 
-        postTags: []    
+        postTags: [],
+        postLike: ''    
+    };
+
+    componentDidMount() {
+        const {post} = this.props.location;
+        if(!post) return this.props.history.push('/admin/allposts');
+
+        this.setState({
+            _id: post._id,
+            postTitle: post.postTitle,
+            postDate: post.postDate,
+            postImageUrl: post.postImageUrl,
+            postContent: post.postContent, 
+            postTags: post.postTags,
+            postLike: post.postLike
+        });
     }
+
     handleSubmit = async e => {
         e.preventDefault();
         try {
-            const result = await createPost(
+            const result = await updatePost(
                 JSON.parse(JSON.stringify(this.state))
             );
-            if(result.status === 200) toast.success('successful creation post');
+            if(result.status === 200) {
+                toast.success('successful edited post');
+                this.props.history.push('/admin/allposts');
+            }
         } catch (ex) {
             if(ex.response && ex.response.status === 400)
             toast.error('Please fill out every item');
@@ -74,7 +96,7 @@ class CreatePost extends Component {
                     type="text"
                     placeholder="Make the tags separate by using (,)"
                     className="form-control input-md m-2"
-                    value={this.state.tags}
+                    value={this.state.postTags}
                     onChange={e =>
                         this.setState({
                             postTags: _.split(e.target.value, ',')
@@ -82,10 +104,10 @@ class CreatePost extends Component {
                     }
                 />
 
-                <button className="btn btn-success m-5">Create New Post</button>
+                <button className="btn btn-success m-5"> Edit Post</button>
             </form>
          );
     }
 }
  
-export default CreatePost;
+export default EditPost;

@@ -1,41 +1,61 @@
 import React, { Component } from 'react';
-import {createCourse} from '../../services/courseService';
-import {toast} from 'react-toastify';
+import { updateCourse } from '../../services/courseService';
+import { toast } from 'react-toastify';
 
-class CreateCourse extends Component {
-    state = { 
-        title:'',
-        time:'',
-        price:'',
-        imageUrl:''
-     };
-    handleSubmit = async  e => {
+class EditCourse extends Component {
+    state = {
+        _id: '',
+        title: '',
+        time: '',
+        price: '',
+        imageUrl: ''
+    };
+
+    componentDidMount() {
+        const { course } = this.props.location;
+
+        if (!course) return this.props.history.push('/admin/allcourses');
+
+        this.setState({
+            _id: course._id,
+            title: course.title,
+            time: course.time,
+            price: course.price,
+            imageUrl: course.imageUrl
+        });
+    }
+
+    handleSubmit = async e => {
         e.preventDefault();
+
         try {
-            const result = await createCourse(
+            const result = await updateCourse(
                 JSON.parse(JSON.stringify(this.state))
             );
-            if (result.status === 200)
-                toast.success('New Course has been made successfully');
+            if (result.status === 200) {
+                toast.success('Edit was successful');
+                this.props.history.push('/admin/allcourses');
+            }
         } catch (ex) {
             if (ex.response && ex.response.status === 400)
                 toast.error('Please fill out all items');
         }
-    }
-    render() { 
-        return ( 
+    };
+
+    render() {
+        return (
             <form
                 onSubmit={this.handleSubmit}
                 className="form-group bg-light border rounded m-2 shadow p-5"
             >
                 <label className="col-md-4 control-label m-2" for="txtTitle">
-                    Title Course
+                    Course Title
                 </label>
                 <input
                     id="txtTitle"
                     name="textinput"
                     type="text"
-                    placeholder="Title Course"
+                    placeholder="Course Title"
                     className="form-control input-md m-2"
                     value={this.state.title}
                     onChange={e => this.setState({ title: e.target.value })}
@@ -81,10 +101,10 @@ class CreateCourse extends Component {
                     onChange={e => this.setState({ imageUrl: e.target.value })}
                 />
 
-                <button className="btn btn-success m-5">Create New Course</button>
+                <button className="btn btn-success m-5">Create a new course</button>
             </form>
-         );
+        );
     }
 }
- 
-export default CreateCourse;
+
+export default EditCourse;

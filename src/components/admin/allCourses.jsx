@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import getCourses from '../../services/fakeCourses';
+import {getCourses, deleteCourses} from '../../services/courseService';
 import { paginate } from '../../utils/paginate';
 import Pagination from './../pagination';
+import {toast} from 'react-toastify';
 
 class AllCourses extends Component {
     state = { 
@@ -10,14 +11,40 @@ class AllCourses extends Component {
         pageSize: 5
      };
 
-    componentDidMount() {
-        const courses = getCourses();
-        this.setState({courses});
+    async componentDidMount() {
+        const {data} = await getCourses();
+        this.setState({courses: data})
     }
 
     handlePageChange = page => {
         this.setState({currentPage: page});
     };
+
+    handleDelete = async courseId => {
+        const originalState = this.state.courses;
+
+        const courses = this.state.courses.filter(c => c._id !== courseId);
+        this.setState({ courses });
+
+        try {
+            const result = await deleteCourses(courseId);
+            if (result.status === 200)
+                toast.success('Successful');
+        } catch (ex) {
+            if (ex.response && ex.response.status === 404)
+                toast.error('There is no course with this ID');
+
+            this.setState({ courses: originalState });
+        }
+    };
+
+    handleRedirect = course => {
+        this.props.history.push({
+            pathname: '/admin/editCourse',
+            course
+        });
+    };
+
     getPageData = () => {
         const {pageSize, currentPage, courses: allCourses} = this.state;
         const courses = paginate(allCourses,currentPage, pageSize);
@@ -29,6 +56,8 @@ class AllCourses extends Component {
     render() { 
         const {pageSize, currentPage} = this.state;
         const {totalCount, data} = this.getPageData();
+
+        let count = 1;
         return ( 
             <div className="bg-light m-3 p-4 border rounded">
                 <table className="table">
@@ -42,18 +71,18 @@ class AllCourses extends Component {
                     </thead>
                     <tbody>
                         {data.map(course => (
-                            <tr key={course.id}>
-                                <th scope="row">{course.id}</th>
+                            <tr key={course._id}>
+                                <th scope="row">{count++}</th>
                                 <td>{course.title}</td>
                                 <td>{course.time}</td>
                                 <td>{course.price}</td>
                                 <td>
-                                    <button className="btn btn-primary" onClick="">
+                                    <button className="btn btn-primary" onClick={() => this.handleRedirect(course)}>
                                         Edit
                                     </button>
                                 </td>
                                 <td>
-                                    <button className="btn btn-danger" onClick="">
+                                    <button className="btn btn-danger" onClick={() => this.handleDelete(course._id)}>
                                         Delete
                                     </button>
                                 </td>
