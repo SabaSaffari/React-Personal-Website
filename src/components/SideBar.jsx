@@ -9,7 +9,7 @@ class Sidebar extends Component {
     state={
         courseCount: ''
     };
-    async componentDidMount() {
+    async componentDidMount() { 
         const {data: courseCount } = await getCourseCount();
         this.setState({cousreCount: courseCount.count});
     }
@@ -30,11 +30,11 @@ class Sidebar extends Component {
                                 <Link className="nav-link" to={nav.link}>
                                     <span className={nav.icon} />
                                     <span className="m-2"> {nav.text}</span>
-                                    {nav.text === 'Courses' ? (
+                                    {/* {nav.text === 'Courses' ? (
                                         <span className="badge-danger badge-pill">
                                             {this.state.courseCount}
                                         </span>
-                                    ) : null}
+                                    ) : null} */}
                                 </Link>
                             </li>
                         ))}

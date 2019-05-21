@@ -1,5 +1,5 @@
 const navLinks = [
-    { id: 1, text: 'Home', link: '#', icon: 'fa fa-home feather' },
+    { id: 1, text: 'Home', link: '/', icon: 'fa fa-home feather' },
     {
         id: 2,
         text: 'Courses',
