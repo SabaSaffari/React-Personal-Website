@@ -9,13 +9,6 @@ const Navbar = () => {
                 Personal Website
             </a>
             <SearchBar />
-            <ul  className="navbar-nav px-3">
-                <li className="nav-item text-nowrap">
-                    <Link className="nav-link" to ="/login">
-                        Enter
-                    </Link>
-                </li>
-            </ul>
         </nav>
       );
 }

@@ -10,12 +10,13 @@ import AllCourses from './allCourses';
 import 'react-toastify/dist/ReactToastify.css';
 import EditPost from './editPost';
 import EditCourse from './editCourses';
+import Logout from './logout';
 
 class Dashboard extends Component {
   render() {
     return (    
         <div className="container-fluid">
-          <ToastContainer/>
+          <ToastContainer/> 
           <Navbar />
             <div className="row">
               <Sidebar />
@@ -27,6 +28,7 @@ class Dashboard extends Component {
                     <Route path="/admin/allcourses" component={AllCourses} />
                     <Route path="/admin/editpost" component={EditPost} />
                     <Route path="/admin/editcourse" component={EditCourse} />
+                    <Route path="/admin/logout" component={Logout} />
                   </Switch>
               </main>
             </div>

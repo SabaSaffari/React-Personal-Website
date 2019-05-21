@@ -7,7 +7,6 @@ class EditPost extends Component {
     state = { 
         _id: '',
         postTitle: '',
-        postDate: '',
         postImageUrl: '',
         postContent: '', 
         postTags: [],
@@ -21,7 +20,6 @@ class EditPost extends Component {
         this.setState({
             _id: post._id,
             postTitle: post.postTitle,
-            postDate: post.postDate,
             postImageUrl: post.postImageUrl,
             postContent: post.postContent, 
             postTags: post.postTags,
@@ -41,7 +39,7 @@ class EditPost extends Component {
             }
         } catch (ex) {
             if(ex.response && ex.response.status === 400)
-            toast.error('Please fill out every item');
+            toast.error('Please fill out all items');
         }
     };
     render() { 

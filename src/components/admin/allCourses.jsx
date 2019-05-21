@@ -13,8 +13,8 @@ class AllCourses extends Component {
 
     async componentDidMount() {
         const {data} = await getCourses();
-        this.setState({courses: data})
-    }
+        this.setState({courses: data});
+    };
 
     handlePageChange = page => {
         this.setState({currentPage: page});

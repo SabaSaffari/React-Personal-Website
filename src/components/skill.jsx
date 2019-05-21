@@ -5,7 +5,7 @@ const Skill = () => {
             <div className="card m-2">
                 <p className="card-title text-center m-2">My Skills</p>
                 <div className="card-body">
-                    Linux
+                    React
                     <div className="progress m-2">
                         <div
                             className="progress-bar bg-warning"
@@ -13,7 +13,7 @@ const Skill = () => {
                             style={{ width: '80%' }}
                         />
                     </div>
-                    Node.js
+                    JavaScript
                     <div className="progress m-2">
                         <div
                             className="progress-bar bg-danger"
@@ -21,7 +21,7 @@ const Skill = () => {
                             style={{ width: '90%' }}
                         />
                     </div>
-                    React
+                    jQuery
                     <div className="progress m-2">
                         <div
                             className="progress-bar bg-primary"
@@ -29,7 +29,7 @@ const Skill = () => {
                             style={{ width: '80%' }}
                         />
                     </div>
-                    Vue.js
+                    HTML5
                     <div className="progress m-2">
                         <div
                             className="progress-bar bg-success"
@@ -37,7 +37,7 @@ const Skill = () => {
                             style={{ width: '50%' }}
                         />
                     </div>
-                    C Sharp
+                    BootStrap
                     <div className="progress m-2">
                         <div
                             className="progress-bar bg-dark"
@@ -45,7 +45,7 @@ const Skill = () => {
                             style={{ width: '85%' }}
                         />
                     </div>
-                    React native
+                    SCSS/LESS
                     <div className="progress m-2">
                         <div
                             className="progress-bar bg-secondary"

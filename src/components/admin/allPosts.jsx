@@ -64,7 +64,6 @@ class AllPosts extends Component {
                         <tr>
                             <th>#</th>
                             <th>Title Post</th>
-                            <th>Publication Date</th>
                             <th>Number of Likes</th>    
                         </tr>
                     </thead>
@@ -73,7 +72,6 @@ class AllPosts extends Component {
                             <tr key={post._id}>
                                 <th scope="row">{count++}</th>
                                 <td>{post.postTitle}</td>
-                                <td>{post.postDate}</td>
                                 <td>{post.postLike }</td>
                                 <td>
                                     <button className="btn btn-primary" onClick={() => this.handleRedirect(post)}>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {createCourse} from '../../services/courseService';
-import {toast} from 'react-toastify';
+import { createCourse } from '../../services/courseService';
+import { toast } from 'react-toastify';
 
 class CreateCourse extends Component {
     state = { 
@@ -10,25 +10,25 @@ class CreateCourse extends Component {
         imageUrl:''
      };
     handleSubmit = async  e => {
-        e.preventDefault();
+        e.preventDefault(); 
         try {
             const result = await createCourse(
                 JSON.parse(JSON.stringify(this.state))
             );
             if (result.status === 200)
-                toast.success('New Course has been made successfully');
+                toast.success('Course created successfully');
         } catch (ex) {
             if (ex.response && ex.response.status === 400)
-                toast.error('Please fill out all items');
+                toast.error('Please fill out all items')
         }
-    }
+    };
     render() { 
         return ( 
             <form
                 onSubmit={this.handleSubmit}
                 className="form-group bg-light border rounded m-2 shadow p-5"
             >
-                <label className="col-md-4 control-label m-2" for="txtTitle">
+                <label className="col-md-4 control-label m-2" htmlfor="txtTitle">
                     Title Course
                 </label>
                 <input

@@ -7,7 +7,7 @@ class CreatePost extends Component {
     state = { 
         postTitle: '',
         postImageUrl: '',
-        postContent: '', 
+        postContent: '',  
         postTags: []    
     }
     handleSubmit = async e => {

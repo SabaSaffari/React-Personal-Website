@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import getPosts from '../services/fakePosts';
+import {getPosts} from '../services/postService';
 import Like from './like';
 import Pagination from './pagination';
 import { paginate } from './../utils/paginate';
@@ -10,9 +10,9 @@ class Posts extends Component {
         currentPage: 1,
         pageSize: 5     
      }
-    componentDidMount(){
-        const posts = getPosts();
-        this.setState({posts});
+    async componentDidMount(){
+        const {data} = await getPosts();
+        this.setState({posts: data});
     }
     handlePageChange = page => {
         this.setState({currentPage: page});
@@ -34,7 +34,7 @@ class Posts extends Component {
         return (
             <React.Fragment>
                 {data.map(post => (
-                    <div className="container-fluid" key={post.id}>
+                    <div className="container-fluid" key={post._id}>
                         <div className="card shadow-lg bg-light m-2">
                             <article className="p-3">
                                 <div className="card-header">
@@ -43,8 +43,8 @@ class Posts extends Component {
                                     </h3>
                                     <span className="card-subtitle">
                                         <span className="fa fa-calendar m-2" />
-                                            {post.postDate}
-                                    </span>
+                                            {/* {post.postDate} */}
+                                    </span> 
                                     <img className="card-img"
                                             src={post.postImageUrl}
                                             alt=""
